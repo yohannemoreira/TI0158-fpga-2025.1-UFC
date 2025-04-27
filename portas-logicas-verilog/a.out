@@ -1,0 +1,85 @@
+#! /usr/local/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xe509060 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0xe5088b0 .scope module, "basic_gates_tb" "basic_gates_tb" 3 1;
+ .timescale 0 0;
+v0xe532c70_0 .var "a", 0 0;
+v0xe532d30_0 .net "and_out", 0 0, L_0xe533210;  1 drivers
+v0xe532e00_0 .var "b", 0 0;
+v0xe532f00_0 .net "nand_out", 0 0, L_0xe5335c0;  1 drivers
+v0xe532fd0_0 .net "nor_out", 0 0, L_0xe5336a0;  1 drivers
+v0xe533070_0 .net "or_out", 0 0, L_0xe533370;  1 drivers
+v0xe533140_0 .net "xor_out", 0 0, L_0xe5337b0;  1 drivers
+S_0xe509c70 .scope module, "uut" "basic_gates" 3 5, 4 1 0, S_0xe5088b0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "and_out";
+    .port_info 3 /OUTPUT 1 "or_out";
+    .port_info 4 /OUTPUT 1 "nand_out";
+    .port_info 5 /OUTPUT 1 "nor_out";
+    .port_info 6 /OUTPUT 1 "xor_out";
+L_0xe533210 .functor AND 1, v0xe532c70_0, v0xe532e00_0, C4<1>, C4<1>;
+L_0xe533370 .functor OR 1, v0xe532c70_0, v0xe532e00_0, C4<0>, C4<0>;
+L_0xe533430 .functor AND 1, v0xe532c70_0, v0xe532e00_0, C4<1>, C4<1>;
+L_0xe5335c0 .functor NOT 1, L_0xe533430, C4<0>, C4<0>, C4<0>;
+L_0xe533630 .functor OR 1, v0xe532c70_0, v0xe532e00_0, C4<0>, C4<0>;
+L_0xe5336a0 .functor NOT 1, L_0xe533630, C4<0>, C4<0>, C4<0>;
+L_0xe5337b0 .functor XOR 1, v0xe532c70_0, v0xe532e00_0, C4<0>, C4<0>;
+v0xe51b440_0 .net *"_ivl_4", 0 0, L_0xe533430;  1 drivers
+v0xe532440_0 .net *"_ivl_8", 0 0, L_0xe533630;  1 drivers
+v0xe532520_0 .net "a", 0 0, v0xe532c70_0;  1 drivers
+v0xe5325f0_0 .net "and_out", 0 0, L_0xe533210;  alias, 1 drivers
+v0xe5326b0_0 .net "b", 0 0, v0xe532e00_0;  1 drivers
+v0xe5327c0_0 .net "nand_out", 0 0, L_0xe5335c0;  alias, 1 drivers
+v0xe532880_0 .net "nor_out", 0 0, L_0xe5336a0;  alias, 1 drivers
+v0xe532940_0 .net "or_out", 0 0, L_0xe533370;  alias, 1 drivers
+v0xe532a00_0 .net "xor_out", 0 0, L_0xe5337b0;  alias, 1 drivers
+    .scope S_0xe5088b0;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xe532c70_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xe532e00_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call/w 3 19 "$display", "Testando todas as portas l\303\263gicas b\303\241sicas" {0 0 0};
+    %vpi_call/w 3 20 "$display", "a | b | AND | OR | NAND | NOR | XOR" {0 0 0};
+    %vpi_call/w 3 21 "$display", "--|---|-----|----|----- |----|----" {0 0 0};
+    %vpi_call/w 3 22 "$display", "%b | %b | %b   | %b  | %b    | %b   | %b", v0xe532c70_0, v0xe532e00_0, v0xe532d30_0, v0xe533070_0, v0xe532f00_0, v0xe532fd0_0, v0xe533140_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xe532c70_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0xe532e00_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call/w 3 26 "$display", "%b | %b | %b   | %b  | %b    | %b   | %b", v0xe532c70_0, v0xe532e00_0, v0xe532d30_0, v0xe533070_0, v0xe532f00_0, v0xe532fd0_0, v0xe533140_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0xe532c70_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xe532e00_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call/w 3 30 "$display", "%b | %b | %b   | %b  | %b    | %b   | %b", v0xe532c70_0, v0xe532e00_0, v0xe532d30_0, v0xe533070_0, v0xe532f00_0, v0xe532fd0_0, v0xe533140_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0xe532c70_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0xe532e00_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call/w 3 34 "$display", "%b | %b | %b   | %b  | %b    | %b   | %b", v0xe532c70_0, v0xe532e00_0, v0xe532d30_0, v0xe533070_0, v0xe532f00_0, v0xe532fd0_0, v0xe533140_0 {0 0 0};
+    %vpi_call/w 3 36 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "testbench.sv";
+    "design.sv";
